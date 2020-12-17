@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "843818893014",
+    "firebase_url": "https://vitally-1.firebaseio.com",
+    "project_id": "vitally-1",
+    "storage_bucket": "vitally-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843818893014:android:02a25af19b54aa21f85377",
+        "android_client_info": {
+          "package_name": "com.aksh.vitally"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843818893014-uvvljdjiavecfp45grlsadn85qetdlcd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aksh.vitally",
+            "certificate_hash": "f219a185e3383ed854f8a031c655ca02eb036c65"
+          }
+        },
+        {
+          "client_id": "843818893014-4inftjicrtvpj05i5ug39qv7maai6dob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeMQ-TcwcZreKmWbE_BcbcM-EmK6SVc2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843818893014-4inftjicrtvpj05i5ug39qv7maai6dob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

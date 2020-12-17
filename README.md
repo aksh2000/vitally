@@ -1,16 +1,19 @@
 # vitally
 
-A new Flutter project.
+Hybrid Mobile Application for Nutrition Recommendation and Tracking
 
-## Getting Started
+## Resources
 
-This project is a starting point for a Flutter application.
+- [UI Design](https://www.figma.com/file/kL6xre0wkALETQdOnQ7F1m/Vitally_Major_Project?node-id=0%3A1)
+- [Documentation](https://www.notion.so/akshithchittiveli/Vitally-5a662c939b844c419ecbb0557570f8c7)
+- Firebase Console : should be accesed with akshithchittiveli@gmail.com
 
-A few resources to get you started if this is your first Flutter project:
+## Dev Team
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Akshith Varma Chittiveli (Developer)
+- Shiva Prasad (UI / UX Design)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Project Timeline
+
+- Staged: 17/12/2020
+- Version 1.0.0 : In Progress

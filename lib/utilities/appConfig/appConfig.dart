@@ -1,0 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:vitally/businessLogic/businessLogic.dart';
+import 'package:vitally/utilities/appConfig/appColors.dart';
+import 'package:vitally/utilities/appConfig/responsive.dart';
+
+class AppConfig {
+  // This class is used to access the objects of classes dealing with the overall configutation of the app
+  // Do not make any changes in this class unless absolutely necessary as changes cna reflect on the whole app
+
+  final BuildContext context;
+  final AppColors appColors = AppColors();
+  BusinessLogic businessLogic;
+  Responsive responsive;
+  AppConfig(this.context) {
+    businessLogic = BusinessLogic(context);
+    responsive = Responsive(context);
+  }
+}
