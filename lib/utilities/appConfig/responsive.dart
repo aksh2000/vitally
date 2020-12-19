@@ -11,7 +11,7 @@ class Responsive {
   Size screenSize;
 
   Responsive(this.context) {
-    this.screenSize = MediaQuery.of(context).size;
+    this.screenSize = MediaQuery.of(this.context).size;
   }
 
   // The following two functions would return height and width based on the baseHeight and baseWidth Provided

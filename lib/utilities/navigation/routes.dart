@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-//TODO: Need to define all routes and make screens
+import 'package:vitally/screens/splashScreen/splashScreen.dart';
 
 class RouteGenerator {
   Route<dynamic> generateRoute(RouteSettings settings) {
@@ -9,7 +8,7 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (context) {
-          return Container();
+          return SplashScreen();
         });
 
       case '/onBoarding':
