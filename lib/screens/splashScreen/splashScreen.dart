@@ -43,7 +43,7 @@ class SplashScreen extends StatelessWidget {
 
       switch (isAppLaunchingForTheFirstTime) {
         case true:
-          // send user to onBoarding Screen
+          Navigator.pushReplacementNamed(context, '/onBoarding');
           break;
         case false:
           if (userExists) {
@@ -54,17 +54,6 @@ class SplashScreen extends StatelessWidget {
           }
           break;
       }
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => TestScreen()));
     });
-  }
-}
-
-class TestScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("First Screen")),
-    );
   }
 }

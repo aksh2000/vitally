@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vitally/screens/onBoarding/onBoardingScreen.dart';
 import 'package:vitally/screens/splashScreen/splashScreen.dart';
+import 'package:vitally/utilities/navigation/pageTransitionAnimation.dart';
 
 class RouteGenerator {
   Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,19 +14,23 @@ class RouteGenerator {
         });
 
       case '/onBoarding':
-        return MaterialPageRoute(builder: (context) {
-          return Container();
-        });
+        return EnterExitRoute(
+          enterPage: OnBoardingScreen(),
+        );
 
       case '/login':
-        return MaterialPageRoute(builder: (context) {
-          return Container();
-        });
+        return EnterExitRoute(
+          enterPage: OnBoardingScreen(),
+        );
 
       case '/dashboard':
-        var user = arguments[0];
+        return EnterExitRoute(
+          enterPage: OnBoardingScreen(),
+        );
+
+      default:
         return MaterialPageRoute(builder: (context) {
-          return Container();
+          return SplashScreen();
         });
     }
   }

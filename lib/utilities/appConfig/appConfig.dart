@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vitally/businessLogic/businessLogic.dart';
 import 'package:vitally/utilities/appConfig/appColors.dart';
 import 'package:vitally/utilities/appConfig/responsive.dart';
+import 'package:vitally/utilities/appConfig/textTheme.dart';
 
 class AppConfig {
   // This class is used to access the objects of classes dealing with the overall configutation of the app
@@ -11,8 +12,10 @@ class AppConfig {
   final AppColors appColors = AppColors();
   BusinessLogic businessLogic;
   Responsive responsive;
+  AppTextTheme appTextTheme;
   AppConfig(this.context) {
     businessLogic = BusinessLogic(context);
     responsive = Responsive(context);
+    appTextTheme = AppTextTheme(responsive, appColors);
   }
 }
