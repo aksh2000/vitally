@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vitally/screens/authentication/signUp.dart';
 import 'package:vitally/screens/onBoarding/onBoardingScreen.dart';
 import 'package:vitally/screens/splashScreen/splashScreen.dart';
 import 'package:vitally/utilities/navigation/pageTransitionAnimation.dart';
@@ -18,9 +19,9 @@ class RouteGenerator {
           enterPage: OnBoardingScreen(),
         );
 
-      case '/login':
+      case '/signup':
         return EnterExitRoute(
-          enterPage: OnBoardingScreen(),
+          enterPage: SignUpScreen(),
         );
 
       case '/dashboard':

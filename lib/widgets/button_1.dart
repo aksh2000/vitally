@@ -29,7 +29,7 @@ class Button extends StatelessWidget {
         ),
         child: Text(
           "$title",
-          style: appConfig.appTextTheme.textTheme.button,
+          style: appConfig.appTextTheme.textStyle2,
         ),
       ),
     );

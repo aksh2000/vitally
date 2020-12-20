@@ -8,6 +8,7 @@ import 'package:vitally/widgets/onboardingPage.dart';
 class OnBoardingScreen extends StatelessWidget {
   AppConfig appConfig;
   final PageController pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     appConfig = AppConfig(context);
@@ -30,7 +31,7 @@ class OnBoardingScreen extends StatelessWidget {
               sizedBox(25),
               pageIndicator,
               sizedBox(60),
-              getStartedButton,
+              getStartedButton(context),
               sizedBox(13),
               alreadyHaveAnAccount,
             ],
@@ -88,19 +89,24 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Widget get getStartedButton {
+  Widget getStartedButton(BuildContext context) {
     return Button(
       title: "Create Account",
-      onTap: () {},
+      onTap: () {
+        pageController.dispose();
+        Navigator.pushReplacementNamed(context, '/signup');
+      },
       appConfig: appConfig,
     );
   }
 
   Widget get alreadyHaveAnAccount {
     return InkWell(
-        onTap: () {},
+        onTap: () {
+          pageController.dispose();
+        },
         child: Text("Already have an account? Login",
-            style: appConfig.appTextTheme.textTheme.bodyText2));
+            style: appConfig.appTextTheme.textStyle1));
   }
 
   SizedBox sizedBox(double height, [double width = 0]) {

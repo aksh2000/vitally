@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
 
   Widget get logo {
     return SizedBox(
-      height: appConfig.responsive.heightBasedOnPercentage(30),
+      height: appConfig.responsive.heightBasedOnPercentage(35),
       child: Image.asset("assets/logo/vitallyLogo.png"),
     );
   }

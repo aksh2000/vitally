@@ -13,7 +13,7 @@ class AppTheme {
       errorColor: appColors.red,
       primaryColor: appColors.green,
       focusColor: appColors.green,
-      highlightColor: appColors.blue,
+      highlightColor: appColors.white,
       indicatorColor: appColors.blue,
       scaffoldBackgroundColor: appColors.white,
       snackBarTheme: SnackBarThemeData(),
