@@ -15,6 +15,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController passwordTextController = TextEditingController();
 
   AppConfig appConfig;
+  //  user = context.findAncestorWidgetOfExactType<Vitally>().user;
 
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,11 @@ import 'package:vitally/utilities/appConfig/appColors.dart';
 import 'package:vitally/utilities/appConfig/appTheme.dart';
 import 'package:vitally/utilities/navigation/routes.dart';
 
+import 'dataModels/user.dart';
+
 class Vitally extends StatefulWidget {
   final RouteGenerator routes = RouteGenerator();
+  final User user = User();
   @override
   _VitallyState createState() => _VitallyState();
 }

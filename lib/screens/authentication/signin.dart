@@ -5,11 +5,12 @@ import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/customTextField.dart';
 import 'package:vitally/widgets/customTextField_2.dart';
 
+// ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
   final TextEditingController emailTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
-
   AppConfig appConfig;
+
   @override
   Widget build(BuildContext context) {
     appConfig = AppConfig(context);
