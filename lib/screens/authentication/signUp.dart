@@ -122,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       validator: (value) {
         return value.length < 6 ? "minimum 6 characters" : null;
       },
-      hintText: "password",
+      hintText: "•••••••••••••",
       appConfig: appConfig,
       textEditingController: passwordTextController,
     );
@@ -163,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget get subTitle {
     return Center(
       child:
-          Text("Let's get started", style: appConfig.appTextTheme.textStyle5),
+          Text("Let's get started", style: appConfig.appTextTheme.textStyle6),
     );
   }
 
@@ -171,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Center(
       child: Text(
         "Welcome to the club",
-        style: appConfig.appTextTheme.textStyle6,
+        style: appConfig.appTextTheme.textStyle5,
       ),
     );
   }

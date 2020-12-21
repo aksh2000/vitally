@@ -89,7 +89,9 @@ class SignInScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(appConfig.context, '/forgotPassword');
+          },
           child: Text(
             "Forgot Password",
             style: appConfig.appTextTheme.textStyle10,
@@ -102,7 +104,7 @@ class SignInScreen extends StatelessWidget {
 
   Widget get subTitle {
     return Center(
-      child: Text("We missed you!", style: appConfig.appTextTheme.textStyle5),
+      child: Text("We missed you!", style: appConfig.appTextTheme.textStyle6),
     );
   }
 
@@ -110,7 +112,7 @@ class SignInScreen extends StatelessWidget {
     return Center(
       child: Text(
         "Welcome back!",
-        style: appConfig.appTextTheme.textStyle6,
+        style: appConfig.appTextTheme.textStyle5,
       ),
     );
   }
@@ -118,7 +120,7 @@ class SignInScreen extends StatelessWidget {
   Widget get image {
     return Center(
       child: Image.asset(
-        "assets/images/Login/signUp.png",
+        "assets/images/Login/login.png",
         height: appConfig.responsive.height(142),
         width: appConfig.responsive.width(168),
       ),
@@ -132,7 +134,7 @@ class SignInScreen extends StatelessWidget {
       validator: (value) {
         return value.length < 6 ? "minimum 6 characters" : null;
       },
-      hintText: "password",
+      hintText: "•••••••••••••",
       appConfig: appConfig,
       textEditingController: passwordTextController,
     );
