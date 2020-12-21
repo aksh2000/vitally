@@ -5,17 +5,11 @@ import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/customTextField.dart';
 import 'package:vitally/widgets/customTextField_2.dart';
 
-class SignUpScreen extends StatefulWidget {
-  @override
-  _SignUpScreenState createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignInScreen extends StatelessWidget {
   final TextEditingController emailTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
   AppConfig appConfig;
-
   @override
   Widget build(BuildContext context) {
     appConfig = AppConfig(context);
@@ -24,18 +18,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
       resizeToAvoidBottomInset: false,
       body: Container(
         alignment: Alignment.bottomCenter,
-        padding: EdgeInsets.only(
-          left: appConfig.responsive.width(30),
-        ),
+        padding:
+            EdgeInsets.symmetric(horizontal: appConfig.responsive.width(30)),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              block1,
-              privacyPolicy,
-              block2,
+              image,
+              sizedBox(11),
+              title,
+              sizedBox(3),
+              subTitle,
+              sizedBox(39),
+              emailTextField,
+              sizedBox(26),
+              passwordTextField,
+              sizedBox(21),
+              forgotPassword,
+              sizedBox(44),
+              signInButton,
+              sizedBox(16),
+              googleButton,
+              sizedBox(20),
+              dontHaveAnAccount(context),
+              sizedBox(30),
             ],
           ),
         ),
@@ -43,42 +51,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget get block2 {
-    return Padding(
-      padding: EdgeInsets.only(
-        right: appConfig.responsive.width(30),
-      ),
-      child: Column(
-        children: [
-          sizedBox(16),
-          signUpButton,
-          sizedBox(16),
-          googleButton,
-          sizedBox(20),
-          alreadyHaveAnAccount,
-          sizedBox(30),
-        ],
-      ),
-    );
-  }
-
-  Widget get alreadyHaveAnAccount {
+  Widget dontHaveAnAccount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Already Have an Account? ",
+        Text("Don't have an account? ",
             style: appConfig.appTextTheme.textStyle9),
         InkWell(
-            onTap: () => Navigator.pushReplacementNamed(context, '/signin'),
+            onTap: () => Navigator.pushReplacementNamed(context, '/signup'),
             child:
-                Text("Login Here", style: appConfig.appTextTheme.textStyle10)),
+                Text("Create Now", style: appConfig.appTextTheme.textStyle10)),
       ],
     );
   }
 
-  Widget get signUpButton {
+  Widget get signInButton {
     return Button(
-      title: "Sign Up",
+      title: "Sign In",
       appConfig: appConfig,
       onTap: () async {},
       height: appConfig.responsive.height(52),
@@ -95,23 +84,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget get block1 {
-    return Padding(
-      padding: EdgeInsets.only(
-        right: appConfig.responsive.width(30),
+  Widget get forgotPassword {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        InkWell(
+          onTap: () {},
+          child: Text(
+            "Forgot Password",
+            style: appConfig.appTextTheme.textStyle10,
+          ),
+        ),
+        sizedBox(0, 5),
+      ],
+    );
+  }
+
+  Widget get subTitle {
+    return Center(
+      child: Text("We missed you!", style: appConfig.appTextTheme.textStyle5),
+    );
+  }
+
+  Widget get title {
+    return Center(
+      child: Text(
+        "Welcome back!",
+        style: appConfig.appTextTheme.textStyle6,
       ),
-      child: Column(children: [
-        image,
-        sizedBox(11),
-        title,
-        sizedBox(3),
-        subTitle,
-        sizedBox(39),
-        emailTextField,
-        sizedBox(26),
-        passwordTextField,
-        sizedBox(44),
-      ]),
+    );
+  }
+
+  Widget get image {
+    return Center(
+      child: Image.asset(
+        "assets/images/Login/signUp.png",
+        height: appConfig.responsive.height(142),
+        width: appConfig.responsive.width(168),
+      ),
     );
   }
 
@@ -128,23 +138,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget get privacyPolicy {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(children: [
-          Text("By Signing Up you agree to our ",
-              style: appConfig.appTextTheme.textStyle9),
-          Text("Terms and Conditions ",
-              style: appConfig.appTextTheme.textStyle10),
-          Text(" &", style: appConfig.appTextTheme.textStyle9)
-        ]),
-        sizedBox(3),
-        Text("Privacy Policy", style: appConfig.appTextTheme.textStyle10)
-      ],
-    );
-  }
-
   Widget get emailTextField {
     return CustomTextField1(
       title: "Email",
@@ -157,32 +150,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       hintText: "qwerty@email.com",
       appConfig: appConfig,
       textEditingController: emailTextController,
-    );
-  }
-
-  Widget get subTitle {
-    return Center(
-      child:
-          Text("Let's get started", style: appConfig.appTextTheme.textStyle5),
-    );
-  }
-
-  Widget get title {
-    return Center(
-      child: Text(
-        "Welcome to the club",
-        style: appConfig.appTextTheme.textStyle6,
-      ),
-    );
-  }
-
-  Widget get image {
-    return Center(
-      child: Image.asset(
-        "assets/images/Login/signUp.png",
-        height: appConfig.responsive.height(142),
-        width: appConfig.responsive.width(168),
-      ),
     );
   }
 
