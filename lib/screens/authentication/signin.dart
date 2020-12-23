@@ -71,7 +71,11 @@ class SignInScreen extends StatelessWidget {
     return Button(
       title: "Sign In",
       appConfig: appConfig,
-      onTap: () async {},
+      onTap: () async {
+        await appConfig.businessLogic.signIn(
+            email: emailTextController.text,
+            password: passwordTextController.text);
+      },
       height: appConfig.responsive.height(52),
     );
   }
@@ -80,7 +84,10 @@ class SignInScreen extends StatelessWidget {
     return Button(
       title: "Google",
       appConfig: appConfig,
-      onTap: () async {},
+      onTap: () async {
+        await appConfig.businessLogic
+            .authenticateWithGoogle(isCalledFromSignUpPage: false);
+      },
       height: appConfig.responsive.height(52),
       color: Colors.blue,
     );
@@ -134,7 +141,7 @@ class SignInScreen extends StatelessWidget {
       title: "Password",
       textInputType: TextInputType.visiblePassword,
       validator: (value) {
-        return value.length < 6 ? "minimum 6 characters" : null;
+        return null;
       },
       hintText: "•••••••••••••",
       appConfig: appConfig,

@@ -82,7 +82,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Button(
       title: "Sign Up",
       appConfig: appConfig,
-      onTap: () async {},
+      onTap: () async {
+        await appConfig.businessLogic.signUp(
+            email: emailTextController.text,
+            password: passwordTextController.text);
+      },
       height: appConfig.responsive.height(52),
     );
   }
@@ -91,7 +95,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Button(
       title: "Google",
       appConfig: appConfig,
-      onTap: () async {},
+      onTap: () async {
+        await appConfig.businessLogic.authenticateWithGoogle();
+      },
       height: appConfig.responsive.height(52),
       color: Colors.blue,
     );

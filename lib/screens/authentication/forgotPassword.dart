@@ -4,6 +4,7 @@ import 'package:vitally/utilities/appConfig/appConfig.dart';
 import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/customTextField.dart';
 
+// ignore: must_be_immutable
 class ForgotPasswordScreen extends StatelessWidget {
   AppConfig appConfig;
   final TextEditingController emailTextController = TextEditingController();
@@ -45,7 +46,10 @@ class ForgotPasswordScreen extends StatelessWidget {
       title: "Send Reset Link",
       appConfig: appConfig,
       color: appConfig.appColors.green,
-      onTap: () async {},
+      onTap: () async {
+        await appConfig.businessLogic
+            .forgotPassword(email: emailTextController.text);
+      },
       height: appConfig.responsive.height(52),
     );
   }

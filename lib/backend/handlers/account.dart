@@ -3,25 +3,26 @@ import 'package:vitally/dataModels/backendResponse.dart';
 import 'package:vitally/dataModels/user.dart';
 
 class AccountHandler {
-  Future<Response> createAccount(User user,
-      [int count = 0, String error = ""]) async {
-    if (count <= 5) {
-      try {
-        await FirebaseFirestore.instance
-            .collection(user.userId)
-            .doc("userData")
-            .set(user.userDetailsForRegistration);
-        return Response(
-            success: true,
-            error: "none",
-            data: {"message": "Account Created Successfully"});
-      } catch (e) {
-        return await createAccount(user, count++, e.toString());
-      }
-    } else {
+  Future<Response> createAccount(User user) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(user.userId)
+          .doc("userData")
+          .set(user.userDetailsForRegistration);
+      return Response(
+          success: true,
+          error: "none",
+          data: {"message": "Account Created Successfully"});
+    } on FirebaseException catch (e) {
+      return Response(
+        success: false,
+        error: "$e",
+        data: {"message": e.message},
+      );
+    } catch (e) {
       return Response(
           success: false,
-          error: error,
+          error: "$e",
           data: {"message": "Failed to Create Account"});
     }
   }
