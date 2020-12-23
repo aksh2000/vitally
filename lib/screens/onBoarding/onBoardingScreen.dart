@@ -31,9 +31,9 @@ class OnBoardingScreen extends StatelessWidget {
               sizedBox(25),
               pageIndicator,
               sizedBox(60),
-              getStartedButton(context),
+              getStartedButton,
               sizedBox(13),
-              alreadyHaveAnAccount(context),
+              alreadyHaveAnAccount,
             ],
           ),
         ),
@@ -89,21 +89,20 @@ class OnBoardingScreen extends StatelessWidget {
     );
   }
 
-  Widget getStartedButton(BuildContext context) {
+  Widget get getStartedButton {
     return Button(
       title: "Create Account",
       onTap: () {
-        // pageController.dispose();
-        Navigator.pushReplacementNamed(context, '/signup');
+        Navigator.pushReplacementNamed(appConfig.context, '/signup');
       },
       appConfig: appConfig,
     );
   }
 
-  Widget alreadyHaveAnAccount(BuildContext context) {
+  Widget get alreadyHaveAnAccount {
     return InkWell(
         onTap: () {
-          Navigator.pushReplacementNamed(context, '/signin');
+          Navigator.pushReplacementNamed(appConfig.context, '/signin');
         },
         child: Text("Already have an account? Login",
             style: appConfig.appTextTheme.textStyle1));

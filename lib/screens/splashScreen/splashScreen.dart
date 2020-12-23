@@ -48,9 +48,13 @@ class SplashScreen extends StatelessWidget {
         case false:
           if (userExists) {
             final String user = sharedPreferences.getString("user") ?? "";
-            // navigate to dashboard
+            Navigator.pushReplacementNamed(
+              context,
+              '/dashboard',
+              arguments: [user],
+            );
           } else {
-            // navigate to login Screen
+            Navigator.pushReplacementNamed(context, '/signin');
           }
           break;
       }

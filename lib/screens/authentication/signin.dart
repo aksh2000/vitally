@@ -43,7 +43,7 @@ class SignInScreen extends StatelessWidget {
               sizedBox(16),
               googleButton,
               sizedBox(20),
-              dontHaveAnAccount(context),
+              dontHaveAnAccount,
               sizedBox(30),
             ],
           ),
@@ -52,14 +52,15 @@ class SignInScreen extends StatelessWidget {
     );
   }
 
-  Widget dontHaveAnAccount(BuildContext context) {
+  Widget get dontHaveAnAccount {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Don't have an account? ",
             style: appConfig.appTextTheme.textStyle9),
         InkWell(
-            onTap: () => Navigator.pushReplacementNamed(context, '/signup'),
+            onTap: () =>
+                Navigator.pushReplacementNamed(appConfig.context, '/signup'),
             child:
                 Text("Create Now", style: appConfig.appTextTheme.textStyle10)),
       ],

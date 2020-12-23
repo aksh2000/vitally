@@ -70,7 +70,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         Text("Already Have an Account? ",
             style: appConfig.appTextTheme.textStyle9),
         InkWell(
-            onTap: () => Navigator.pushReplacementNamed(context, '/signin'),
+            onTap: () =>
+                Navigator.pushReplacementNamed(appConfig.context, '/signin'),
             child:
                 Text("Login Here", style: appConfig.appTextTheme.textStyle10)),
       ],
