@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vitally/dataModels/backendResponse.dart';
 
 class AuthenticationHandler {
@@ -164,17 +163,14 @@ class AuthenticationHandler {
 
   Future<Response> signOut() async {
     // *
-    // To sign out the user and delete the credentials from local storage
+    // To sign out the user
+    // This function does not concern about removing stored user credentials from local storage
     // *
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     try {
       // Logout User
       FirebaseAuth.instance.signOut();
       GoogleSignIn().signOut();
-
-      // Remove User credentials from local storage
-      sharedPreferences.remove("");
 
       // Return a success response
       return Response(

@@ -35,9 +35,7 @@ class SplashScreen extends StatelessWidget {
           sharedPreferences.getBool("isAppLaunchingForTheFirstTime") ?? true;
       final bool userExists = sharedPreferences.getBool("userExists") ?? false;
 
-      final bool appIsInTesting = true;
-
-      if (isAppLaunchingForTheFirstTime && !appIsInTesting) {
+      if (isAppLaunchingForTheFirstTime) {
         sharedPreferences.setBool("isAppLaunchingForTheFirstTime", false);
       }
 
