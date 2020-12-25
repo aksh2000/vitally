@@ -24,16 +24,14 @@ class _HelpUsKnowYouBetterState extends State<HelpUsKnowYouBetter> {
       TextEditingController();
   final TextEditingController cityTextController = TextEditingController();
   final TextEditingController dailyActivityTextController =
-      TextEditingController(text: "testing value");
+      TextEditingController();
   Gender gender = Gender.male;
   DailyActivity dailyActivity = DailyActivity.sedentary;
 
-  User user;
   AppConfig appConfig;
 
   @override
   void initState() {
-    user = context.findAncestorWidgetOfExactType<Vitally>().user;
     super.initState();
   }
 
