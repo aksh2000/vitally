@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
+import 'package:vitally/vitally.dart';
 
 // ignore: must_be_immutable
 class SplashScreen extends StatelessWidget {
@@ -45,12 +46,11 @@ class SplashScreen extends StatelessWidget {
           break;
         case false:
           if (userExists) {
-            final String user = sharedPreferences.getString("user") ?? "";
-            Navigator.pushReplacementNamed(
-              context,
-              '/dashboard',
-              arguments: [user],
-            );
+            context.findAncestorWidgetOfExactType<Vitally>().user.userId =
+                sharedPreferences.getString("user");
+
+            // check if user details are available and redirect accordingly
+            await appConfig.businessLogic.redirectAfterCheckingUserDetails();
           } else {
             Navigator.pushReplacementNamed(context, '/signin');
           }

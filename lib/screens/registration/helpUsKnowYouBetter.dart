@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vitally/dataModels/user.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
 import 'package:vitally/utilities/enums.dart';
-import 'package:vitally/vitally.dart';
 import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/customTextField.dart';
 import 'package:vitally/widgets/customTextField_3.dart';

@@ -13,4 +13,7 @@ class AppColors {
   final Color white = Colors.white;
   final Color black = Colors.black;
   final Color red = Colors.red;
+  final Color thickGreen = Colors.green;
+  final Color pastelRed = Color(0xFFFFD1D1);
+  final Color pastelGreen = Color(0xFFCEFFC9);
 }

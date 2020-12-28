@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
+import 'package:vitally/widgets/button_1.dart';
 
 import '../../vitally.dart';
 
+// ignore: must_be_immutable
 class GetToKnowYourself extends StatelessWidget {
   AppConfig appConfig;
 
@@ -25,10 +27,22 @@ class GetToKnowYourself extends StatelessWidget {
             sizedBox(37),
             idealWeightForYouSection,
             sizedBox(85),
+            nextButton,
           ],
         ),
       ),
     );
+  }
+
+  Widget get nextButton {
+    return Button(
+        color: appConfig.appColors.green,
+        title: "Next",
+        height: appConfig.responsive.height(60),
+        onTap: () {
+          Navigator.pushNamed(appConfig.context, '/goalSelection');
+        },
+        appConfig: appConfig);
   }
 
   Widget get idealWeightForYouSection {

@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:vitally/screens/authentication/forgotPassword.dart';
 import 'package:vitally/screens/authentication/signUp.dart';
 import 'package:vitally/screens/authentication/signin.dart';
+import 'package:vitally/screens/dashboard/dashboard.dart';
+import 'package:vitally/screens/offline/offline.dart';
 import 'package:vitally/screens/onBoarding/onBoardingScreen.dart';
 import 'package:vitally/screens/registration/getToKnowYourself.dart';
+import 'package:vitally/screens/registration/goalSelection.dart';
 import 'package:vitally/screens/registration/helpUsKnowYouBetter.dart';
+import 'package:vitally/screens/registration/preview.dart';
+import 'package:vitally/screens/registration/targetWeight.dart';
 import 'package:vitally/screens/splashScreen/splashScreen.dart';
 import 'package:vitally/utilities/navigation/pageTransitionAnimation.dart';
 
@@ -48,9 +53,29 @@ class RouteGenerator {
           enterPage: GetToKnowYourself(),
         );
 
+      case '/goalSelection':
+        return EnterExitRoute(
+          enterPage: GoalSelection(),
+        );
+
+      case '/targetWeight':
+        return EnterExitRoute(
+          enterPage: TargetWeight(),
+        );
+
+      case '/planReview':
+        return EnterExitRoute(
+          enterPage: GoalPreview(),
+        );
+
+      case '/offline':
+        return EnterExitRoute(
+          enterPage: OfflineScreen(),
+        );
+
       case '/dashboard':
         return EnterExitRoute(
-          enterPage: OnBoardingScreen(),
+          enterPage: Dashboard(),
         );
 
       default:

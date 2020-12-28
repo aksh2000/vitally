@@ -129,25 +129,25 @@ class AppTextTheme {
 
   TextStyle get textStyle20 => TextStyle(
         color: Colors.grey[500],
-        fontSize: responsive.height(25),
+        fontSize: responsive.height(23),
         fontWeight: FontWeight.w500,
       );
 
   TextStyle get textStyle21 => TextStyle(
         color: colors.white,
-        fontSize: responsive.height(25),
+        fontSize: responsive.height(23),
         fontWeight: FontWeight.w500,
       );
 
   TextStyle get textStyle22 => TextStyle(
         color: Colors.grey[500],
-        fontSize: responsive.height(14),
+        fontSize: responsive.height(12.5),
         fontWeight: FontWeight.w300,
       );
 
   TextStyle get textStyle23 => TextStyle(
         color: colors.white,
-        fontSize: responsive.height(14),
+        fontSize: responsive.height(12.5),
         fontWeight: FontWeight.w300,
       );
 

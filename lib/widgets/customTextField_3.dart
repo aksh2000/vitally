@@ -52,8 +52,8 @@ class CustomTextField3 extends StatelessWidget {
             decoration: InputDecoration(
                 hintText: this.hintText ?? "",
                 hintStyle: appConfig.appTextTheme.textStyle8,
-                suffix:
-                    suffix("$suffixUnits", suffixUnits.length > 2 ? 33 : 24),
+                suffix: suffix("$suffixUnits",
+                    suffixUnits.length > 2 ? (suffixUnits.length * 11).toDouble() : 24),
                 isDense: this.isDense ?? false),
           )
         ],
