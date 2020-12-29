@@ -4,6 +4,7 @@ import 'package:vitally/vitally.dart';
 import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/customTextField_3.dart';
 
+// ignore: must_be_immutable
 class TargetWeight extends StatelessWidget {
   AppConfig appConfig;
   final TextEditingController targetWeight = TextEditingController();

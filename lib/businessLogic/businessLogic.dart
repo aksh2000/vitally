@@ -5,6 +5,7 @@ import 'package:vitally/backend/backend.dart';
 import 'package:vitally/dataModels/backendResponse.dart';
 import 'package:vitally/dataModels/user.dart';
 import 'package:vitally/utilities/appConfig/appColors.dart';
+import 'package:vitally/utilities/appConfig/appIcons.dart';
 import 'package:vitally/utilities/appConfig/responsive.dart';
 import 'package:vitally/utilities/enums.dart';
 import 'package:vitally/utilities/resources/idealWeight.dart' as resources;
@@ -21,6 +22,9 @@ class BusinessLogic {
   final Color errorText = AppColors().red;
   final Color successText = AppColors().thickGreen;
   final Color successGreen = AppColors().pastelGreen;
+
+  // icons for snackbars
+  final AppIcons appIcons = AppIcons();
 
   BusinessLogic(this.context);
 
@@ -50,6 +54,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -75,6 +80,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -100,6 +106,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -112,6 +119,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: successGreen,
           textColor: successText,
+          icon: appIcons.success,
           content: backendResponse.data['message']);
 
       // back to login screen
@@ -121,6 +129,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -143,6 +152,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -155,6 +165,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: successGreen,
           textColor: successText,
+          icon: appIcons.success,
           content: backendResponse.data['message']);
 
       // to dashboard
@@ -165,6 +176,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -179,6 +191,7 @@ class BusinessLogic {
     if (backendResponse.success) {
       showSnackbar(
           backgroundColor: AppColors().black,
+          icon: appIcons.welcomeBack,
           content: backendResponse.data['message']);
 
       // artificial delay while showing message
@@ -190,6 +203,7 @@ class BusinessLogic {
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
+          icon: appIcons.error,
           content: backendResponse.data['message']);
     }
   }
@@ -198,14 +212,19 @@ class BusinessLogic {
       {@required String content,
       Duration duration,
       @required Color backgroundColor,
+      Icon icon,
       Color textColor}) {
     Flushbar(
       messageText: Text(
         content,
         style: TextStyle(
             fontFamily: "Roboto", color: textColor ?? AppColors().white),
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.left,
       ),
+      icon: Theme(
+          data: ThemeData(
+              iconTheme: IconThemeData(color: textColor ?? AppColors().white)),
+          child: icon ?? appIcons.settings),
       backgroundColor: backgroundColor ?? AppColors().black,
       duration: duration ?? Duration(milliseconds: 2000),
       flushbarPosition: FlushbarPosition.BOTTOM,
@@ -241,6 +260,7 @@ class BusinessLogic {
       showSnackbar(
         content: e.toString(),
         backgroundColor: errorRed,
+        icon: appIcons.error,
         textColor: errorText,
       );
     }
@@ -272,12 +292,14 @@ class BusinessLogic {
         content: "Please enter valid values to continue",
         backgroundColor: errorRed,
         textColor: errorText,
+        icon: appIcons.error,
       );
     } catch (e) {
       showSnackbar(
         content: e.toString(),
         backgroundColor: errorRed,
         textColor: errorText,
+        icon: appIcons.error,
       );
     }
   }
@@ -402,12 +424,14 @@ class BusinessLogic {
       showSnackbar(
         content: e.message.toString(),
         backgroundColor: errorRed,
+        icon: appIcons.error,
         textColor: errorText,
       );
     } catch (e) {
       showSnackbar(
         content: e.toString(),
         backgroundColor: errorRed,
+        icon: appIcons.error,
         textColor: errorText,
       );
     }
