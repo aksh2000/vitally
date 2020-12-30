@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
   }
 
   Future backgroundTask(BuildContext context) {
-    return Future.delayed(Duration(seconds: 2)).whenComplete(() async {
+    return Future.delayed(Duration(milliseconds: 300)).whenComplete(() async {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
 
@@ -48,9 +48,9 @@ class SplashScreen extends StatelessWidget {
           if (userExists) {
             context.findAncestorWidgetOfExactType<Vitally>().user.userId =
                 sharedPreferences.getString("user");
-
             // check if user details are available and redirect accordingly
-            await appConfig.businessLogic.redirectAfterCheckingUserDetails();
+            await appConfig.businessLogic
+                .redirectAfterCheckingUserDetails(true);
           } else {
             Navigator.pushReplacementNamed(context, '/signin');
           }

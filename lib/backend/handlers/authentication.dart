@@ -144,7 +144,7 @@ class AuthenticationHandler {
       return Response(
         success: true,
         error: "",
-        data: {"message": "Check Your email for Password Reset Link"},
+        data: {"message": "Check Your email for Reset Link"},
       );
     } on FirebaseAuthException catch (e) {
       return Response(

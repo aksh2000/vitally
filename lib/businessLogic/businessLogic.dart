@@ -29,6 +29,7 @@ class BusinessLogic {
   BusinessLogic(this.context);
 
   Future<void> authenticateWithGoogle({bool isCalledFromSignUpPage}) async {
+    showProgressIndicator();
     Response backendResponse =
         await backend.authenticationHandler.authenticateWithGoogle();
     if (backendResponse.success) {
@@ -42,15 +43,11 @@ class BusinessLogic {
       context.findAncestorWidgetOfExactType<Vitally>().user.userId =
           backendResponse.data['userId'];
 
-      // Send user to next Screen
-      if (isCalledFromSignUpPage ?? true) {
-        // registration process
-        Navigator.pushReplacementNamed(context, '/helpUsKnowYouBetter');
-      } else {
-        // check if user details are available to proceed further
-        await redirectAfterCheckingUserDetails();
-      }
+      // Send user to next Screen after checking if the user details are available
+      await redirectAfterCheckingUserDetails();
     } else {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
@@ -60,6 +57,7 @@ class BusinessLogic {
   }
 
   Future<void> signUp({String email, String password}) async {
+    showProgressIndicator();
     Response backendResponse = await backend.authenticationHandler
         .signUpWithEmailAndPassword(email, password);
 
@@ -77,6 +75,9 @@ class BusinessLogic {
       // Send user to next Screen
       Navigator.pushReplacementNamed(context, '/helpUsKnowYouBetter');
     } else {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
+
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
@@ -86,6 +87,7 @@ class BusinessLogic {
   }
 
   Future<void> signIn({String email, String password}) async {
+    showProgressIndicator();
     Response backendResponse = await backend.authenticationHandler
         .signInWithEmailAndPassword(email, password);
 
@@ -103,6 +105,8 @@ class BusinessLogic {
       // check if user details are available to proceed further
       await redirectAfterCheckingUserDetails();
     } else {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
@@ -112,20 +116,25 @@ class BusinessLogic {
   }
 
   Future<void> forgotPassword({String email, String password}) async {
+    showProgressIndicator();
     Response backendResponse =
         await backend.authenticationHandler.sendMailToResetPassword(email);
 
     if (backendResponse.success) {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
       showSnackbar(
           backgroundColor: successGreen,
           textColor: successText,
-          icon: appIcons.success,
+          icon: appIcons.email,
           content: backendResponse.data['message']);
 
       // back to login screen
       Future.delayed(Duration(milliseconds: 3000))
           .whenComplete(() => Navigator.pop(context));
     } else {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
@@ -158,10 +167,13 @@ class BusinessLogic {
   }
 
   Future<void> createAccount() async {
+    showProgressIndicator();
     final dynamic user = context.findAncestorWidgetOfExactType<Vitally>().user;
     Response backendResponse = await backend.accountHandler.createAccount(user);
 
     if (backendResponse.success) {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
       showSnackbar(
           backgroundColor: successGreen,
           textColor: successText,
@@ -172,6 +184,8 @@ class BusinessLogic {
       Future.delayed(Duration(milliseconds: 3000)).whenComplete(
           () => Navigator.pushReplacementNamed(context, '/dashboard'));
     } else {
+      // to stop showing the progress Indicator
+      Navigator.pop(context);
       print(backendResponse.data['error']);
       showSnackbar(
           backgroundColor: errorRed,
@@ -181,7 +195,8 @@ class BusinessLogic {
     }
   }
 
-  Future<void> redirectAfterCheckingUserDetails() async {
+  Future<void> redirectAfterCheckingUserDetails(
+      [bool callFromSplashScreen = false]) async {
     final dynamic user = context.findAncestorWidgetOfExactType<Vitally>().user;
 
     // check if user details are available in Firebase Firestore
@@ -189,6 +204,9 @@ class BusinessLogic {
         await backend.accountHandler.checkIfAccountDetailsAvailable(user);
 
     if (backendResponse.success) {
+      // to stop showing the spinner
+      if (!callFromSplashScreen) Navigator.pop(context);
+
       showSnackbar(
           backgroundColor: AppColors().black,
           icon: appIcons.welcomeBack,
@@ -200,12 +218,31 @@ class BusinessLogic {
             context, '${backendResponse.data["redirectUserTo"]}');
       });
     } else {
+      // to stop showing the spinner
+      if (!callFromSplashScreen) Navigator.pop(context);
       showSnackbar(
           backgroundColor: errorRed,
           textColor: errorText,
           icon: appIcons.error,
           content: backendResponse.data['message']);
     }
+  }
+
+  void showProgressIndicator() {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        useRootNavigator: false,
+        builder: (context) {
+          return Container(
+            height: 50.0,
+            width: 50.0,
+            alignment: Alignment.center,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(AppColors().blue),
+            ),
+          );
+        });
   }
 
   void showSnackbar(

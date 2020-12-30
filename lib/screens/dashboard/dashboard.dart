@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vitally/screens/dashboard/profile/profile.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
 import 'package:vitally/utilities/enums.dart';
 import 'package:vitally/widgets/bottomNavigationBarItem.dart';
@@ -36,15 +37,14 @@ class _DashboardState extends State<Dashboard> {
       Center(child: Text("Home")),
       Center(child: Text("Stats")),
       Center(child: Text("Health Logs")),
-      Center(child: Text("Profile Screen")),
-      // ProfileScreen()
+      ProfileScreen(),
     ];
     return dashBoardScreens[currentDashboardScreen.index];
   }
 
   Widget get bottomNavigationBar {
     return BottomNavigationBar(
-        elevation: 10.0,
+        elevation: 15.0,
         backgroundColor: appConfig.appColors.white,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,

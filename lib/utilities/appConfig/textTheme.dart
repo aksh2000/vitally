@@ -190,7 +190,7 @@ class AppTextTheme {
 
   TextStyle get textStyle29 => TextStyle(
         color: colors.black,
-        fontSize: responsive.height(28),
+        fontSize: responsive.height(22),
         fontWeight: FontWeight.w600,
       );
 

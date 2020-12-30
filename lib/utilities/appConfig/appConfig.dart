@@ -18,4 +18,7 @@ class AppConfig {
     responsive = Responsive(context);
     appTextTheme = AppTextTheme(responsive, appColors);
   }
+
+  // Update the App Version code upon deployment
+  final String appVersion = "v 1.0.0 -a";
 }
