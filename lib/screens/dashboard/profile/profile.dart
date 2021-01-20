@@ -265,25 +265,8 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Text("Streaks", style: appConfig.appTextTheme.textStyle36),
-          // seperatorHorizontal,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GoalBannerDetailsHolder(
-                title: "Target weight",
-                value: user.targetWeight.toString(),
-                units: "kgs",
-                appConfig: appConfig,
-              ),
-              GoalBannerDetailsHolder(
-                title: "Target Duration",
-                value: user.targetDuration.toInt().toString(),
-                units: "weeks",
-                appConfig: appConfig,
-              ),
-            ],
-          )
+          Text("Streaks", style: appConfig.appTextTheme.textStyle36),
+          seperatorHorizontal,
         ],
       ),
     );
