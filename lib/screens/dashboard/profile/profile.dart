@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flushbar/flushbar.dart';
+import 'package:flutter/material.dart' hide OutlineButton;
 import 'package:vitally/dataModels/user.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
 import 'package:vitally/vitally.dart';
+import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/goalBannerDetailsHolder.dart';
 import 'package:vitally/widgets/outlineButton.dart';
+import 'package:vitally/widgets/outlineButton_2.dart';
 import 'package:vitally/widgets/userDetailsHolder.dart';
 
 // ignore: must_be_immutable
@@ -118,9 +121,7 @@ class ProfileScreen extends StatelessWidget {
       height: appConfig.responsive.height(164),
       alignment: Alignment.topCenter,
       child: InkWell(
-        onTap: () {
-          appConfig.businessLogic.signOut();
-        },
+        onTap: () {},
         child: Icon(
           Icons.settings,
           color: appConfig.appColors.black.withOpacity(0.5),
@@ -146,25 +147,42 @@ class ProfileScreen extends StatelessWidget {
   Widget get logoutDialog {
     return Dialog(
       child: Container(
-        height: appConfig.responsive.heightBasedOnPercentage(17),
-        width: appConfig.responsive.widthBasedOnPercentage(85),
+        height: appConfig.responsive.height(144),
+        width: appConfig.responsive.width(285),
         // alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(
-            vertical: appConfig.responsive.height(25),
-            horizontal: appConfig.responsive.width(30)),
+        padding: EdgeInsets.only(
+            left: appConfig.responsive.width(24),
+            top: appConfig.responsive.height(24)),
         decoration: BoxDecoration(
             color: appConfig.appColors.white,
-            borderRadius: BorderRadius.all(Radius.circular(30))),
+            borderRadius: BorderRadius.all(Radius.circular(13))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Are your sure?",
-              style: TextStyle(
-                  fontSize: appConfig.responsive.height(19),
-                  fontWeight: FontWeight.w500),
-            ),
-            sizedBox(appConfig.responsive.heightBasedOnPercentage(1.5)),
+            Text("Confirm Logout ?", style: appConfig.appTextTheme.textStyle34),
+            sizedBox(25),
+            Row(
+              children: [
+                Button(
+                  appConfig: appConfig,
+                  onTap: () {
+                    Navigator.pop(appConfig.context);
+                  },
+                  color: appConfig.appColors.grey,
+                  height: appConfig.responsive.height(45),
+                  width: appConfig.responsive.width(113),
+                  title: "Cancel",
+                ),
+                sizedBox(0, 11),
+                OutlineButton(
+                  appConfig: appConfig,
+                  title: "Yes",
+                  onTap: () {
+                    appConfig.businessLogic.signOut();
+                  },
+                )
+              ],
+            )
           ],
         ),
       ),
@@ -245,23 +263,23 @@ class ProfileScreen extends StatelessWidget {
         children: [
           // Text("Streaks", style: appConfig.appTextTheme.textStyle36),
           // seperatorHorizontal,
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     GoalBannerDetailsHolder(
-          //       title: "Target weight",
-          //       value: user.targetWeight.toString(),
-          //       units: "kgs",
-          //       appConfig: appConfig,
-          //     ),
-          //     GoalBannerDetailsHolder(
-          //       title: "Target Duration",
-          //       value: user.targetDuration.toInt().toString(),
-          //       units: "weeks",
-          //       appConfig: appConfig,
-          //     ),
-          //   ],
-          // )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GoalBannerDetailsHolder(
+                title: "Target weight",
+                value: user.targetWeight.toString(),
+                units: "kgs",
+                appConfig: appConfig,
+              ),
+              GoalBannerDetailsHolder(
+                title: "Target Duration",
+                value: user.targetDuration.toInt().toString(),
+                units: "weeks",
+                appConfig: appConfig,
+              ),
+            ],
+          )
         ],
       ),
     );

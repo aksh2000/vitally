@@ -7,9 +7,11 @@ class Button extends StatelessWidget {
   final Function onTap;
   final AppConfig appConfig;
   final double height;
+  final double width;
 
   Button(
       {this.color,
+      this.width,
       this.onTap,
       this.height,
       @required this.title,
@@ -20,7 +22,7 @@ class Button extends StatelessWidget {
       onTap: this.onTap ?? () {},
       child: Container(
         height: this.height ?? appConfig.responsive.height(60),
-        width: appConfig.responsive.width(311),
+        width: this.width ?? appConfig.responsive.width(311),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color ?? appConfig.appColors.blue,
