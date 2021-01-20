@@ -180,9 +180,10 @@ class BusinessLogic {
           icon: appIcons.success,
           content: backendResponse.data['message']);
 
-      // to dashboard
-      Future.delayed(Duration(milliseconds: 3000)).whenComplete(
-          () => Navigator.pushReplacementNamed(context, '/dashboard'));
+      // remove all the previous screens out of widget tree and proceed to dashboard
+      Future.delayed(Duration(milliseconds: 3000)).whenComplete(() =>
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/dashboard', (Route<dynamic> route) => false));
     } else {
       // to stop showing the progress Indicator
       Navigator.pop(context);
