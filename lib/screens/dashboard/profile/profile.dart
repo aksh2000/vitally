@@ -178,6 +178,10 @@ class ProfileScreen extends StatelessWidget {
                   appConfig: appConfig,
                   title: "Yes",
                   onTap: () {
+                    // pop out the dialog box
+                    Navigator.pop(appConfig.context);
+
+                    // trigger the sign out function
                     appConfig.businessLogic.signOut();
                   },
                 )
