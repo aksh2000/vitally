@@ -34,7 +34,6 @@ class GoalPreview extends StatelessWidget {
   }
 
   Widget get stats {
-    appConfig.businessLogic.updateUserDailyCalorieRequirement();
     User user = appConfig.context.findAncestorWidgetOfExactType<Vitally>().user;
     bool isGoalBeHealthier = user.goal == Goal.beHealthier;
     return Container(

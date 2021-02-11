@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vitally/dataModels/user.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
+import 'package:vitally/utilities/enums.dart';
 import 'package:vitally/vitally.dart';
 import 'package:vitally/widgets/button_1.dart';
 import 'package:vitally/widgets/customTextField_3.dart';
@@ -56,7 +58,7 @@ class TargetWeight extends StatelessWidget {
         title: "Next",
         height: appConfig.responsive.height(60),
         onTap: () {
-          if (valuesEntered) {
+          if (valuesEntered && validateTargetWeight(targetWeight.text)) {
             appConfig.businessLogic.targetWeightUpdateUserData(
                 targetWeight: targetWeight.text,
                 targetDuration: targetDuration.text);
@@ -78,6 +80,7 @@ class TargetWeight extends StatelessWidget {
   }
 
   Widget get setYourTargetWeightTextField {
+    User user = appConfig.context.findAncestorWidgetOfExactType<Vitally>().user;
     return CustomTextField3(
       textEditingController: targetWeight,
       appConfig: appConfig,
@@ -85,9 +88,33 @@ class TargetWeight extends StatelessWidget {
       textInputType: TextInputType.number,
       enabled: true,
       suffixUnits: "kg",
-      hintText:
-          "${appConfig.context.findAncestorWidgetOfExactType<Vitally>().user.idealWeight.toInt()}",
+      validator: (weightEntered) {
+        if (weightEntered == "") return "Enter Valid Weight";
+        if (!validateTargetWeight(weightEntered))
+          return "Your goal is to ${user.convertGoalToString(user.goal)}";
+      },
+      hintText: "${user.idealWeight.toInt()}",
     );
+  }
+
+  bool validateTargetWeight(String weightEntered) {
+    User user = appConfig.context.findAncestorWidgetOfExactType<Vitally>().user;
+
+    try {
+      if (user.goal == Goal.gainWeight) {
+        if (num.parse(weightEntered) < user.weight) {
+          return false;
+        }
+      } else {
+        if (num.parse(weightEntered) > user.weight) {
+          return false;
+        }
+      }
+
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   Widget get pageHeader {

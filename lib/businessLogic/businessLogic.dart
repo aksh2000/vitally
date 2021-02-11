@@ -5,6 +5,7 @@ import 'package:vitally/backend/backend.dart';
 import 'package:vitally/dataModels/backendResponse.dart';
 import 'package:vitally/dataModels/user.dart';
 import 'package:vitally/utilities/appConfig/appColors.dart';
+import 'package:vitally/utilities/appConfig/appConfig.dart';
 import 'package:vitally/utilities/appConfig/appIcons.dart';
 import 'package:vitally/utilities/appConfig/responsive.dart';
 import 'package:vitally/utilities/enums.dart';
@@ -205,26 +206,30 @@ class BusinessLogic {
         await backend.accountHandler.checkIfAccountDetailsAvailable(user);
 
     if (backendResponse.success) {
-      Map data = backendResponse.data['userDetails'];
-      // update user object
-      user
-        ..firstName = data['firstName']
-        ..lastName = data['lastName']
-        ..age = data['age']
-        ..genderString = data['gender']
-        ..weight = data['weight']
-        ..height = data['height']
-        ..occupation = data['occupation']
-        ..dailyActivityString = data['dailyActivity']
-        ..city = data['city']
-        ..bmi = data['initialBmi']
-        ..idealWeight = data['idealWeight']
-        ..goalString = data['goal']
-        ..targetWeight = data['targetWeight']
-        ..targetDuration = data['targetDuration']
-        ..dailyCalorieRequirement = data['dailyCalorieRequirement']
-        ..dailyWaterRequirement = data['dailyWaterRequirement']
-        ..bmiGoal = data['bmiGoal'];
+      if (backendResponse.data.containsKey('userDetails')) {
+        Map data = backendResponse.data['userDetails'];
+
+        print(data);
+        // update user object
+        user
+          ..firstName = data['firstName']
+          ..lastName = data['lastName']
+          ..age = data['age']
+          ..genderString = data['gender']
+          ..weight = data['weight']
+          ..height = data['height']
+          ..occupation = data['occupation']
+          ..dailyActivityString = data['dailyActivity']
+          ..city = data['city']
+          ..bmi = data['initialBmi']
+          ..idealWeight = data['idealWeight']
+          ..goalString = data['goal']
+          ..targetWeight = data['targetWeight']
+          ..targetDuration = data['targetDuration']
+          ..dailyCalorieRequirement = data['dailyCalorieRequirement']
+          ..dailyWaterRequirement = data['dailyWaterRequirement']
+          ..bmiGoal = data['bmiGoal'];
+      }
 
       // to stop showing the spinner
       if (!callFromSplashScreen) Navigator.pop(context);
@@ -328,6 +333,9 @@ class BusinessLogic {
   void targetWeightUpdateUserData(
       {@required String targetWeight, @required String targetDuration}) {
     User user = context.findAncestorWidgetOfExactType<Vitally>().user;
+
+    // check if the values entered are realistic and achievable
+
     try {
       if (targetWeight == null || targetDuration == null)
         throw 'Enter required values to continue';
@@ -347,7 +355,15 @@ class BusinessLogic {
           heightInCms: user.height, weightInKgs: user.targetWeight);
 
       // * move to next page based
-      Navigator.pushNamed(context, '/planReview');
+      if (!checkAndUpdateUserDailyCalorieRequirement) {
+        showSnackbar(
+          content: "Be Realistic with your goals",
+          backgroundColor: errorRed,
+          textColor: errorText,
+          icon: appIcons.error,
+        );
+      } else
+        Navigator.pushNamed(context, '/planReview');
     } on FormatException catch (e) {
       print(e.message);
       showSnackbar(
@@ -366,7 +382,7 @@ class BusinessLogic {
     }
   }
 
-  void updateUserDailyCalorieRequirement() {
+  bool get checkAndUpdateUserDailyCalorieRequirement {
     User user = context.findAncestorWidgetOfExactType<Vitally>().user;
 
     // 1 Kilogram contains 7770 calories
@@ -385,6 +401,8 @@ class BusinessLogic {
     if (user.goal == Goal.beHealthier) {
       user.dailyCalorieRequirement =
           dailyCalorieRequirementToMaintainCurrentWeight;
+
+      return true;
     } else {
       // find the difference between target weight and current weight
       double differenceBetweenTargetWeightAndCurrentWeight =
@@ -394,12 +412,19 @@ class BusinessLogic {
       // This below snipped of code calculates how many calories the user should eat less or more inorder to lose/gain
       // weight in n no of days and substracts / adds it from/to the regular calorie requirement
 
-      user.dailyCalorieRequirement =
+      double dailyCalorieRequirement =
           ((differenceBetweenTargetWeightAndCurrentWeight /
                       weeksToDays(user.targetDuration.toInt()) *
                       noOfCaloriesInAKilogram) -
                   dailyCalorieRequirementToMaintainCurrentWeight)
               .abs();
+
+      if (dailyCalorieRequirement > 5000) {
+        return false;
+      } else {
+        user.dailyCalorieRequirement = dailyCalorieRequirement;
+        return true;
+      }
     }
   }
 
