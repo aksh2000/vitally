@@ -336,8 +336,11 @@ class BusinessLogic {
       user.targetWeight = double.parse(targetWeight);
       user.targetDuration = double.parse(targetDuration);
 
+      double differenceBetweenTargetWeightAndCurrentWeight =
+          (user.targetWeight - user.weight);
+
       user.weeklyGoal = num.parse(
-          ((user.targetWeight - user.weight) / user.targetDuration)
+          (differenceBetweenTargetWeightAndCurrentWeight / user.targetDuration)
               .toStringAsFixed(2));
 
       user.bmiGoal = calculateBMI(
@@ -390,6 +393,7 @@ class BusinessLogic {
       // calculate the calorie requirement
       // This below snipped of code calculates how many calories the user should eat less or more inorder to lose/gain
       // weight in n no of days and substracts / adds it from/to the regular calorie requirement
+
       user.dailyCalorieRequirement =
           ((differenceBetweenTargetWeightAndCurrentWeight /
                       weeksToDays(user.targetDuration.toInt()) *
