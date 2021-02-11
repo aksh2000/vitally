@@ -44,7 +44,8 @@ class GoalPreview extends StatelessWidget {
         children: [
           YourCalorieGoalTile(
             heading: "Daily Calories required",
-            content: "${user.dailyCalorieRequirement}" + " kcal",
+            content:
+                "${user.dailyCalorieRequirement.toStringAsFixed(2)}" + " kcal",
             appConfig: appConfig,
           ),
           sizedBox(21),

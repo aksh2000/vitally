@@ -6,14 +6,15 @@ import 'package:vitally/utilities/navigation/routes.dart';
 
 import 'dataModels/user.dart';
 
-class Vitally extends StatefulWidget {
+// class Vitally extends StatefulWidget {
+
+//   @override
+//   _VitallyState createState() => _VitallyState();
+// }
+
+class Vitally extends StatelessWidget {
   final RouteGenerator routes = RouteGenerator();
   final User user = User();
-  @override
-  _VitallyState createState() => _VitallyState();
-}
-
-class _VitallyState extends State<Vitally> {
   final AppTheme appTheme = AppTheme(appColors: AppColors());
 
   @override
@@ -25,7 +26,7 @@ class _VitallyState extends State<Vitally> {
       theme: appTheme.themeData,
       title: "Vitally",
       color: appTheme.appColors.white,
-      onGenerateRoute: widget.routes.generateRoute,
+      onGenerateRoute: routes.generateRoute,
       initialRoute: '/',
     );
   }

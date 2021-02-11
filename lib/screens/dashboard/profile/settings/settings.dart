@@ -52,7 +52,9 @@ class SettingsScreen extends StatelessWidget {
         sizedBox(20),
         settingsBanner3,
         sizedBox(20),
-        settingsBanner4
+        settingsBanner4,
+        sizedBox(20),
+        settingsBanner5
       ],
     );
   }
@@ -94,6 +96,26 @@ class SettingsScreen extends StatelessWidget {
       decoration: BoxDecoration(
           color: appConfig.appColors.white,
           borderRadius: BorderRadius.all(Radius.circular(13))),
+    );
+  }
+
+  Widget get settingsBanner5 {
+    //TODO: submit feedback option
+
+    return Container(
+      height: appConfig.responsive.height(56),
+      width: appConfig.responsive.width(311),
+      decoration: BoxDecoration(
+          color: appConfig.appColors.white,
+          borderRadius: BorderRadius.all(Radius.circular(13))),
+    );
+  }
+
+  Widget seperatorHorizontal([double height = 0.5, double width = 297]) {
+    return Container(
+      color: appConfig.appColors.black.withOpacity(0.5),
+      height: appConfig.responsive.height(height),
+      width: appConfig.responsive.width(width),
     );
   }
 

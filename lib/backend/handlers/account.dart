@@ -46,7 +46,8 @@ class AccountHandler {
           success: true,
           error: "",
           data: {
-            "message": "Hi ${user.firstName}, Welcome back!",
+            "message":
+                "Hi ${documentSnapshot.data()['firstName']}, Welcome back!",
             "redirectUserTo": "/dashboard",
             "userDetails": documentSnapshot.data()
           },

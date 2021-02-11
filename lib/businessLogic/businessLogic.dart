@@ -366,18 +366,41 @@ class BusinessLogic {
   void updateUserDailyCalorieRequirement() {
     User user = context.findAncestorWidgetOfExactType<Vitally>().user;
 
-    // calculate user bmr
+    // 1 Kilogram contains 7770 calories
+    final double noOfCaloriesInAKilogram = 7770.0;
+
+    // calculate bmr
     double bmr = calculateBMR(
         height: user.height,
         weight: user.weight,
         age: user.age,
         gender: user.gender);
-    // based on bmr and daily Activity calculate daily calorie requirement
-    double dailyCalorieRequirements =
+
+    double dailyCalorieRequirementToMaintainCurrentWeight =
         calculateDailyCalorieRequirements(user.dailyActivity, bmr);
 
-    // update user object
-    user.dailyCalorieRequirement = dailyCalorieRequirements;
+    if (user.goal == Goal.beHealthier) {
+      user.dailyCalorieRequirement =
+          dailyCalorieRequirementToMaintainCurrentWeight;
+    } else {
+      // find the difference between target weight and current weight
+      double differenceBetweenTargetWeightAndCurrentWeight =
+          user.weight - user.targetWeight;
+
+      // calculate the calorie requirement
+      // This below snipped of code calculates how many calories the user should eat less or more inorder to lose/gain
+      // weight in n no of days and substracts / adds it from/to the regular calorie requirement
+      user.dailyCalorieRequirement =
+          ((differenceBetweenTargetWeightAndCurrentWeight /
+                      weeksToDays(user.targetDuration.toInt()) *
+                      noOfCaloriesInAKilogram) -
+                  dailyCalorieRequirementToMaintainCurrentWeight)
+              .abs();
+    }
+  }
+
+  int weeksToDays(int noOfWeeks) {
+    return noOfWeeks * 7;
   }
 
   double calculateDailyCalorieRequirements(
