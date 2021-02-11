@@ -34,7 +34,7 @@ class AccountHandler {
     try {
       // * check if a document exists in Users collection with userId as its name
       // * If it exists, that means the user has finished his registration
-      // * update the user class for further use
+      // * return the user details and redirect user to dashboard
       // * In case it doesn't, return the user to registration flow
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
           .collection('Users')
@@ -42,36 +42,13 @@ class AccountHandler {
           .get();
 
       if (documentSnapshot.exists) {
-        Map data = documentSnapshot.data();
-
-        // update user object
-        user
-          ..firstName = data['firstName']
-          ..lastName = data['lastName']
-          ..age = data['age']
-          ..genderString = data['gender']
-          ..weight = data['weight']
-          ..height = data['height']
-          ..occupation = data['occupation']
-          ..dailyActivityString = data['dailyActivity']
-          ..city = data['city']
-          ..bmi = data['initialBmi']
-          ..idealWeight = data['idealWeight']
-          ..goalString = data['goal']
-          ..targetWeight = data['targetWeight']
-          ..targetDuration = data['targetDuration']
-          ..dailyCalorieRequirement = data['dailyCalorieRequirement']
-          ..dailyWaterRequirement = data['dailyWaterRequirement']
-          ..bmiGoal = data['bmiGoal'];
-
-        // print(data.toString());
-
         return Response(
           success: true,
           error: "",
           data: {
             "message": "Hi ${user.firstName}, Welcome back!",
             "redirectUserTo": "/dashboard",
+            "userDetails": documentSnapshot.data()
           },
         );
       } else {

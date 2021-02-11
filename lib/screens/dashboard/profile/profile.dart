@@ -1,4 +1,3 @@
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart' hide OutlineButton;
 import 'package:vitally/dataModels/user.dart';
 import 'package:vitally/utilities/appConfig/appConfig.dart';
@@ -121,7 +120,10 @@ class ProfileScreen extends StatelessWidget {
       height: appConfig.responsive.height(164),
       alignment: Alignment.topCenter,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          // go to settings screen
+          Navigator.pushNamed(appConfig.context, "/settings");
+        },
         child: Icon(
           Icons.settings,
           color: appConfig.appColors.black.withOpacity(0.5),
@@ -134,7 +136,8 @@ class ProfileScreen extends StatelessWidget {
   Widget get logoutButton {
     return InkWell(
       onTap: () {
-        showDialog(context: appConfig.context, child: logoutDialog);
+        showDialog(
+            context: appConfig.context, builder: (context) => logoutDialog);
       },
       child: Text(
         "LOGOUT",
@@ -166,6 +169,7 @@ class ProfileScreen extends StatelessWidget {
                 Button(
                   appConfig: appConfig,
                   onTap: () {
+                    // pop out the dialog box
                     Navigator.pop(appConfig.context);
                   },
                   color: appConfig.appColors.grey,
@@ -265,8 +269,23 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text("Streaks", style: appConfig.appTextTheme.textStyle36),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            children: [
+              Text("Streaks", style: appConfig.appTextTheme.textStyle36),
+              sizedBox(0, 3),
+              Text("(days)",
+                  style: appConfig.appTextTheme.textStyle39
+                      .copyWith(color: appConfig.appColors.black)),
+            ],
+          ),
           seperatorHorizontal,
+          Center(
+            child: Text(
+              "No data available",
+              textAlign: TextAlign.center,
+            ),
+          )
         ],
       ),
     );
@@ -282,6 +301,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
+//TODO: Need to implement
   Widget get weightGraph {
     return Container(
       height: appConfig.responsive.height(250),
@@ -296,7 +316,12 @@ class ProfileScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [],
+        children: [
+          Text(
+            "No data available to populate graph at the moment",
+            textAlign: TextAlign.center,
+          )
+        ],
       ),
     );
   }

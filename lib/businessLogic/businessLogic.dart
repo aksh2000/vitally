@@ -205,6 +205,27 @@ class BusinessLogic {
         await backend.accountHandler.checkIfAccountDetailsAvailable(user);
 
     if (backendResponse.success) {
+      Map data = backendResponse.data['userDetails'];
+      // update user object
+      user
+        ..firstName = data['firstName']
+        ..lastName = data['lastName']
+        ..age = data['age']
+        ..genderString = data['gender']
+        ..weight = data['weight']
+        ..height = data['height']
+        ..occupation = data['occupation']
+        ..dailyActivityString = data['dailyActivity']
+        ..city = data['city']
+        ..bmi = data['initialBmi']
+        ..idealWeight = data['idealWeight']
+        ..goalString = data['goal']
+        ..targetWeight = data['targetWeight']
+        ..targetDuration = data['targetDuration']
+        ..dailyCalorieRequirement = data['dailyCalorieRequirement']
+        ..dailyWaterRequirement = data['dailyWaterRequirement']
+        ..bmiGoal = data['bmiGoal'];
+
       // to stop showing the spinner
       if (!callFromSplashScreen) Navigator.pop(context);
 

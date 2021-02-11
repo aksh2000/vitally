@@ -15,7 +15,6 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     appConfig = AppConfig(context);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
       body: Container(
         alignment: Alignment.bottomCenter,

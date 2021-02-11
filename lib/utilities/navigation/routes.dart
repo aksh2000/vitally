@@ -3,6 +3,7 @@ import 'package:vitally/screens/authentication/forgotPassword.dart';
 import 'package:vitally/screens/authentication/signUp.dart';
 import 'package:vitally/screens/authentication/signin.dart';
 import 'package:vitally/screens/dashboard/dashboard.dart';
+import 'package:vitally/screens/dashboard/profile/settings/settings.dart';
 import 'package:vitally/screens/offline/offline.dart';
 import 'package:vitally/screens/onBoarding/onBoardingScreen.dart';
 import 'package:vitally/screens/registration/getToKnowYourself.dart';
@@ -76,6 +77,11 @@ class RouteGenerator {
       case '/dashboard':
         return EnterExitRoute(
           enterPage: Dashboard(),
+        );
+
+      case '/settings':
+        return EnterExitRoute(
+          enterPage: SettingsScreen(),
         );
 
       default:
