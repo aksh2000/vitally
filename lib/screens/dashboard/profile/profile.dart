@@ -270,7 +270,7 @@ class ProfileScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("Streaks", style: appConfig.appTextTheme.textStyle36),
               sizedBox(0, 3),
