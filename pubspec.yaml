@@ -17,9 +17,9 @@ dependencies:
   email_validator: #Email Validation
   flushbar: #Snack bars
   shared_preferences: ^0.5.10 #Local Storage
-  firebase_core: ^0.7.0 #Firebase
-  firebase_auth: ^0.20.0+1 #Authentication using Firebase
-  cloud_firestore: ^0.16.0 #Cloud Storage with Firebase Firestore
+  firebase_core: #Firebase
+  firebase_auth: #Authentication using Firebase
+  cloud_firestore: #Cloud Storage with Firebase Firestore
   google_sign_in: ^4.5.9 #Aunthentication with Google
   # flutter_local_notifications: ^3.0.2 #Notifications to be implemented later
   # firebase_messaging: ^7.0.3 #Notifications to be implemented later
