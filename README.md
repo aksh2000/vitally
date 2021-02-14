@@ -1,4 +1,4 @@
-# vitally
+# vitally [Migrated to GITLAB : 14/02/2021]
 
 Hybrid Mobile Application for Nutrition Recommendation and Tracking
 
