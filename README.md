@@ -1,4 +1,4 @@
-# vitally [Migrated to GITLAB : 14/02/2021]
+# vitally - Major Project - SRMIST CSE - 2021
 
 Hybrid Mobile Application for Nutrition Recommendation and Tracking
 
@@ -8,12 +8,6 @@ Hybrid Mobile Application for Nutrition Recommendation and Tracking
 - [Documentation](https://www.notion.so/akshithchittiveli/Vitally-5a662c939b844c419ecbb0557570f8c7)
 - Firebase Console : should be accesed with akshithchittiveli@gmail.com
 
-## Dev Team
-
+## Team
 - Akshith Varma Chittiveli (Developer)
 - Shiva Prasad (UI / UX Design)
-
-### Project Timeline
-
-- Staged: 17/12/2020
-- Version 1.0.0 : In Progress
